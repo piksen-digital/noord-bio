@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noord Bio | Applied Nano-Health & Biotech Intelligence</title>
+    <meta name="description" content="Track cutting-edge nanotechnology and biotech innovations with real API data. Noord Bio showcases breakthrough startups, research, and investment opportunities.">
+    <meta name="keywords" content="nanotechnology, biotech, health innovation, future tech, startup showcase, nano-medicine, bioengineering, biotechnology, nanotech, healthtech">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2215%22 fill=%22%232563eb%22/><path d=%22M30 35 L50 25 L70 35 L65 60 L35 60 Z%22 fill=%22%237c3aed%22/><circle cx=%2250%22 cy=%2240%22 r=%228%22 fill=%22white%22 opacity=%220.8%22/><circle cx=%2245%22 cy=%2235%22 r=%223%22 fill=%22white%22/></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --color-primary: #2563eb;
+            --color-secondary: #7c3aed;
+            --color-accent: #06b6d4;
+            --color-dark: #0f172a;
+            --color-light: #f8fafc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #334155;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 700;
+            color: var(--color-dark);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 16px;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        /* Custom animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            transition: all 0.3s ease;
+            transform: translateX(100%);
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .overlay {
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Custom logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            top: 8px;
+            left: 8px;
+        }
+        
+        /* Demo-specific styles */
+        .demo-modal {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-primary);
+            border-radius: 4px;
+        }
+        
+        /* Data source cards */
+        .data-source-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid;
+        }
+        
+        .data-source-card.free {
+            border-left-color: #10b981;
+        }
+        
+        .data-source-card.limited {
+            border-left-color: #f59e0b;
+        }
+        
+        .api-badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .api-badge.free {
+            background: #10b981;
+            color: white;
+        }
+        
+        .api-badge.limited {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        /* Hero image styling */
+        .hero-image {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            z-index: 1;
+        }
+        
+        .hero-image-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 nav-blur shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900">Noord<span class="gradient-text">Bio</span></h1>
+                        <p class="text-xs text-gray-500">Nano-Health Intelligence</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Home</a>
+                    <a href="#features" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Tech Showcase</a>
+                    <a href="#startups" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Startups</a>
+                    <a href="#applications" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Applications</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Premium</a>
+                </nav>
+                
+                <!-- CTA & Auth -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="loginBtn" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300">Log In</button>
+                    <button id="signupBtn" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">Start Free Trial</button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-40 md:hidden">
+        <div class="overlay fixed inset-0 bg-black opacity-70" id="overlay"></div>
+        <div class="absolute top-0 right-0 h-full w-64 bg-white shadow-xl p-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <h2 class="text-xl font-bold text-gray-900">Noord<span class="gradient-text">Bio</span></h2>
+                </div>
+                <button id="closeMenuBtn" class="text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-6">
+                <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors duration-300">Home</a>
+                <a href="#features" class="text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors duration-300">Tech Showcase</a>
+                <a href="#startups" class="text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors duration-300">Startups</a>
+                <a href="#applications" class="text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors duration-300">Applications</a>
+                <a href="#pricing" class="text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors duration-300">Premium</a>
+                <div class="pt-6 border-t border-gray-200">
+                    <button id="mobileLoginBtn" class="w-full text-gray-700 hover:text-blue-600 font-medium py-2 transition-colors duration-300">Log In</button>
+                    <button id="mobileSignupBtn" class="w-full mt-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium px-5 py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">Start Free Trial</button>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                        <span class="block">The Future of</span>
+                        <span class="gradient-text">Nano-Health</span>
+                        <span class="block">is Here</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Track groundbreaking biotech innovations and nanotechnology applications transforming healthcare, diagnostics, and human longevity. Join the forefront of applied science.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="gradient-bg text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            Explore Innovations
+                        </button>
+                        <button id="heroDemoBtn" class="bg-white text-gray-800 font-semibold px-8 py-3 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300">
+                            Interactive Demo
+                        </button>
+                    </div>
+                    <div class="mt-10 flex items-center space-x-8">
+                        <div>
+                            <p class="text-2xl font-bold gradient-text">250+</p>
+                            <p class="text-gray-600">Startups Tracked</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold gradient-text">1.2K+</p>
+                            <p class="text-gray-600">Innovations Monitored</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold gradient-text">Live</p>
+                            <p class="text-gray-600">Data Updates</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 relative">
+                    <div class="hero-image w-full h-80 lg:h-96 float-animation">
+                        <div class="hero-image-content w-full h-full relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20"></div>
+                            <div class="absolute top-10 left-10 bg-white p-4 rounded-2xl shadow-lg max-w-xs">
+                                <p class="font-semibold text-gray-800">Nanobots in bloodstream</p>
+                                <p class="text-sm text-gray-600">Real-time pathogen detection</p>
+                            </div>
+                            <div class="absolute bottom-10 right-10 bg-white p-4 rounded-2xl shadow-lg max-w-xs">
+                                <p class="font-semibold text-gray-800">DNA-based data storage</p>
+                                <p class="text-sm text-gray-600">Revolutionary memory tech</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="container mx-auto max-w-7xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Explore Cutting-Edge <span class="gradient-text">Biotech</span></h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Discover revolutionary technologies that are reshaping healthcare, diagnostics, and human potential.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="card-hover bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Targeted Drug Delivery</h3>
+                    <p class="text-gray-600 mb-6">Nanoscale carriers that deliver medications directly to diseased cells, minimizing side effects and maximizing efficacy.</p>
+                    <a href="#" class="text-blue-600 font-medium flex items-center">
+                        Explore 45+ solutions
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="card-hover bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">CRISPR & Gene Editing</h3>
+                    <p class="text-gray-600 mb-6">Precision genetic modification technologies that can correct mutations and treat inherited diseases at the DNA level.</p>
+                    <a href="#" class="text-purple-600 font-medium flex items-center">
+                        Discover 32+ startups
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="card-hover bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Lab-on-a-Chip Diagnostics</h3>
+                    <p class="text-gray-600 mb-6">Miniaturized devices that can perform complex laboratory tests on a single chip, enabling rapid, portable diagnostics.</p>
+                    <a href="#" class="text-cyan-600 font-medium flex items-center">
+                        View 28+ innovations
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Sources Section - UPDATED FOR SECURITY -->
+    <section id="dataSources" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto max-w-7xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Powered by <span class="gradient-text">Live Intelligence</span></h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Our platform delivers real-time insights from verified sources, ensuring you have the most current biotech intelligence.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Source 1 -->
+                <div class="data-source-card free bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-800">Research Database</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="api-badge free mr-2">Verified</span>
+                                <span class="text-sm text-gray-500">Global Sources</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Comprehensive access to the latest nanotechnology and biotech research from authoritative sources.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Updates:</span>
+                            <span class="text-green-600 font-medium">Real-time</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Coverage:</span>
+                            <span class="text-green-600 font-medium">Global</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Source 2 -->
+                <div class="data-source-card free bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-800">Clinical Trials</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="api-badge free mr-2">Verified</span>
+                                <span class="text-sm text-gray-500">Live Data</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Active nanomedicine and biotech clinical trials with real-time updates on progress and results.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Updates:</span>
+                            <span class="text-green-600 font-medium">Daily</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Accuracy:</span>
+                            <span class="text-green-600 font-medium">99.8%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Source 3 -->
+                <div class="data-source-card limited bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-800">Industry News</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="api-badge limited mr-2">Curated</span>
+                                <span class="text-sm text-gray-500">Filtered Sources</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Biotech industry news and startup funding announcements from trusted, verified sources.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Sources:</span>
+                            <span class="text-green-600 font-medium">Premium</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Relevance:</span>
+                            <span class="text-green-600 font-medium">High Priority</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Source 4 -->
+                <div class="data-source-card free bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-800">Verified Database</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="api-badge free mr-2">Human Verified</span>
+                                <span class="text-sm text-gray-500">Quality Checked</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Hand-curated startup profiles with verified funding data and expert analysis.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Updates:</span>
+                            <span class="text-green-600 font-medium">Weekly</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Verification:</span>
+                            <span class="text-green-600 font-medium">100% Manual</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="gradient-bg text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                    Explore Data Methodology
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Startups Showcase -->
+    <section id="startups" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50">
+        <div class="container mx-auto max-w-7xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured <span class="gradient-text">Biotech Startups</span></h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Discover pioneering companies pushing the boundaries of what's possible in health and biotechnology.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Startup 1 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-cyan-400 relative">
+                        <div class="absolute top-4 right-4 bg-white text-blue-600 font-bold px-3 py-1 rounded-full text-sm">Series B</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-blue-600 font-bold">NB</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl">NanoBio Therapeutics</h3>
+                                <p class="text-gray-600">Targeted cancer therapies</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">Developing nanoparticle-based drug delivery systems that target cancer cells with unprecedented precision.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Founded: 2020</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">$42M raised</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Startup 2 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 relative">
+                        <div class="absolute top-4 right-4 bg-white text-purple-600 font-bold px-3 py-1 rounded-full text-sm">Series A</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-purple-600 font-bold">GD</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl">GenomeDx</h3>
+                                <p class="text-gray-600">AI-powered diagnostics</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">Using artificial intelligence and nanotechnology to detect diseases from genetic markers with 99.7% accuracy.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Founded: 2021</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">$28M raised</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Startup 3 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-400 relative">
+                        <div class="absolute top-4 right-4 bg-white text-green-600 font-bold px-3 py-1 rounded-full text-sm">Seed</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-100 to-teal-100 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-green-600 font-bold">SN</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl">SynthNano</h3>
+                                <p class="text-gray-600">Synthetic biology</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">Engineering nanoscale biological systems for environmental cleanup and sustainable manufacturing.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Founded: 2022</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">$12M raised</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="gradient-bg text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                    View All 250+ Startups
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Real-World <span class="gradient-text">Applications</span></h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Nanotechnology and biotechnology are converging to create solutions for some of humanity's most pressing challenges. From early disease detection to personalized medicine, the future of healthcare is being shaped at the nanoscale.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0 mr-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Early Disease Detection</h3>
+                                <p class="text-gray-600">Nanoscale sensors that can detect biomarkers for diseases like cancer years before symptoms appear.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 mr-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 002-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Personalized Medicine</h3>
+                                <p class="text-gray-600">Tailored treatments based on individual genetic profiles and real-time health monitoring.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0 mr-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Regenerative Therapies</h3>
+                                <p class="text-gray-600">Nanomaterials that stimulate tissue regeneration and repair damaged organs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 shadow-2xl">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Technology Readiness Level (TRL) Tracker</h3>
+                            <p class="text-gray-600">Monitor the development stage of breakthrough technologies from lab to market.</p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">CRISPR-Based Therapies</span>
+                                    <span class="text-blue-600 font-bold">TRL 7</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Nanobot Diagnostics</span>
+                                    <span class="text-purple-600 font-bold">TRL 5</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-purple-600 h-2 rounded-full" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">AI-Driven Drug Discovery</span>
+                                    <span class="text-green-600 font-bold">TRL 8</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Organ-on-a-Chip</span>
+                                    <span class="text-cyan-600 font-bold">TRL 6</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-600 h-2 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10 p-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl text-white">
+                            <h4 class="text-xl font-bold mb-2">Premium Insights</h4>
+                            <p class="mb-4">Unlock detailed analysis, investment opportunities, and exclusive interviews with founders.</p>
+                            <button class="bg-white text-blue-600 font-semibold px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                                Upgrade to Pro
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Choose Your <span class="gradient-text">Access Level</span></h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Select the plan that matches your interest in the future of nano-health and biotech.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Free Plan -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-2">Explorer</h3>
+                        <p class="text-gray-600">Basic access to curated content</p>
+                        <div class="mt-6">
+                            <span class="text-4xl font-bold">Free</span>
+                            <span class="text-gray-600">/ forever</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Access to basic articles</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Weekly newsletter</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Public startup directory</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            <span>Premium research reports</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            <span>Investment opportunities</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-gray-100 text-gray-800 font-semibold py-3 rounded-lg hover:bg-gray-200 transition-colors duration-300">
+                        Get Started for Free
+                    </button>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="card-hover bg-gradient-to-b from-blue-50 to-white rounded-2xl p-8 border-2 border-blue-200 relative shadow-xl">
+                    <div class="absolute top-0 right-6 transform -translate-y-1/2">
+                        <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-4 py-1 rounded-full text-sm">MOST POPULAR</span>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-2">Innovator</h3>
+                        <p class="text-gray-600">Full access with premium insights</p>
+                        <div class="mt-6">
+                            <span class="text-4xl font-bold">$29</span>
+                            <span class="text-gray-600">/ month</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Everything in Explorer</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>In-depth research reports</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Startup investment alerts</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Monthly expert webinars</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            <span>Direct founder access</span>
+                        </li>
+                    </ul>
+                    
+                    <button id="proPlanBtn" class="w-full gradient-bg text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                        Start 14-Day Free Trial
+                    </button>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+                        <p class="text-gray-600">For teams and organizations</p>
+                        <div class="mt-6">
+                            <span class="text-4xl font-bold">$99</span>
+                            <span class="text-gray-600">/ month</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Everything in Innovator</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Up to 10 team members</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Direct founder access</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Custom research requests</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Priority support & consulting</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-gray-100 text-gray-800 font-semibold py-3 rounded-lg hover:bg-gray-200 transition-colors duration-300">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 text-gray-600">
+                <p>All plans include secure payment via PayPal. Cancel anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked <span class="gradient-text">Questions</span></h2>
+                <p class="text-lg text-gray-600">Get answers to common questions about Noord Bio and our platform.</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center">
+                        <span>What makes Noord Bio different from other biotech news sites?</span>
+                        <button class="faq-toggle text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                    </h3>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        <p>Noord Bio focuses exclusively on applied nanotechnology and biotechnology with a startup-centric approach. We provide not just news but detailed analysis, technology readiness assessments, and curated investment opportunities. Our platform combines scientific depth with business intelligence for professionals and enthusiasts alike.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center">
+                        <span>How often is the content updated?</span>
+                        <button class="faq-toggle text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                    </h3>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        <p>Our content is updated daily with breaking news and weekly with in-depth analysis. Premium subscribers receive real-time alerts on funding rounds, clinical trial results, and regulatory approvals. We monitor over 500 sources including scientific journals, patent databases, and startup announcements to ensure comprehensive coverage.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center">
+                        <span>Can I access Noord Bio on mobile devices?</span>
+                        <button class="faq-toggle text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                    </h3>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        <p>Absolutely! Noord Bio is built with a mobile-first approach and works seamlessly on all devices. We also offer dedicated iOS and Android apps for premium subscribers with offline reading capabilities and push notifications for important updates.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center">
+                        <span>What payment methods do you accept?</span>
+                        <button class="faq-toggle text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                    </h3>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        <p>We accept all major credit cards, PayPal, and for enterprise plans, we can arrange invoice-based billing. All payments are processed securely through PCI-compliant systems, and we never store your payment information on our servers.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center">
+                        <span>Do you offer discounts for students or researchers?</span>
+                        <button class="faq-toggle text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                    </h3>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        <p>Yes! We offer a 50% discount for verified students, academic researchers, and employees of non-profit research institutions. Contact our support team with proof of affiliation to get your discount code.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-gray-800">
+                <!-- Company Info -->
+                <div>
+                    <div class="logo mb-6">
+                        <div class="logo-icon"></div>
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Noord<span class="text-blue-400">Bio</span></h2>
+                            <p class="text-xs text-gray-500">Nano-Health Intelligence</p>
+                        </div>
+                    </div>
+                    <p class="mb-6">Exploring the convergence of nanotechnology and biotechnology to transform human health and longevity.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors duration-300">
+                            <span class="sr-only">Twitter</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors duration-300">
+                            <span class="sr-only">LinkedIn</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors duration-300">
+                            <span class="sr-only">GitHub</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-6">Platform</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="#features" class="hover:text-white transition-colors duration-300">Tech Showcase</a></li>
+                        <li><a href="#startups" class="hover:text-white transition-colors duration-300">Startups</a></li>
+                        <li><a href="#applications" class="hover:text-white transition-colors duration-300">Applications</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors duration-300">Premium</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-6">Resources</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Research Reports</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Technology Database</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Investment Guide</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Glossary</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-6">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>contact@noordbio.app</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>San Francisco, CA<br>Biotech Innovation Hub</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <h4 class="text-white font-bold mb-4">Subscribe to our newsletter</h4>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 transition-colors duration-300">
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2023 Noord Bio. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors duration-300">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DEMO MODAL -->
+    <div id="demoModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-70 hidden">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden demo-modal">
+            <div class="border-b border-gray-200 p-6 flex justify-between items-center">
+                <h3 class="text-2xl font-bold text-gray-800">🚀 Noord Bio Interactive Demo</h3>
+                <button id="closeDemoModal" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">Experience Noord Bio in Action</h4>
+                    <p class="text-gray-600">See how real-time data powers our platform's intelligence</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-100">
+                        <h5 class="font-bold text-lg mb-4 text-gray-800">Live Data Flow</h5>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-medium">Research Database</div>
+                                    <div class="text-sm text-gray-600">Fetching research data...</div>
+                                </div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-medium">Clinical Trials</div>
+                                    <div class="text-sm text-gray-600">Processing trial data...</div>
+                                </div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-medium">Industry News</div>
+                                    <div class="text-sm text-gray-600">Analyzing industry news...</div>
+                                </div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl border border-gray-200">
+                        <h5 class="font-bold text-lg mb-4 text-gray-800">Demo Features</h5>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Real-time technology tracking</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Startup investment analysis</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Market trend visualization</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Live data insights</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button class="gradient-bg text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 mb-4">
+                        Launch Full Demo Experience
+                    </button>
+                    <p class="text-sm text-gray-600">Experience a guided tour of all platform features</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 opacity-0 invisible">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Log In to Noord Bio</h3>
+                <button id="closeLoginModal" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="you@example.com" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="••••••••" required>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
+                    <label for="remember" class="ml-2 text-sm text-gray-700">Remember me</label>
+                </div>
+                <button type="submit" class="w-full gradient-bg text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    Log In
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Don't have an account? <button id="switchToSignup" class="text-blue-600 font-medium hover:text-blue-800">Sign up</button></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Start Your Free Trial</h3>
+                <button id="closeSignupModal" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="signupForm" class="space-y-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                        <input type="text" id="firstName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" required>
+                    </div>
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                        <input type="text" id="lastName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="signupEmail" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="signupEmail" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="you@example.com" required>
+                </div>
+                <div>
+                    <label for="signupPassword" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" id="signupPassword" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="••••••••" required>
+                </div>
+                <div>
+                    <label for="planSelect" class="block text-sm font-medium text-gray-700 mb-2">Select Plan</label>
+                    <select id="planSelect" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        <option value="explorer">Explorer (Free)</option>
+                        <option value="innovator">Innovator (14-day trial, then $29/month)</option>
+                        <option value="enterprise">Enterprise ($99/month)</option>
+                    </select>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="terms" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" required>
+                    <label for="terms" class="ml-2 text-sm text-gray-700">I agree to the <a href="#" class="text-blue-600 hover:text-blue-800">Terms of Service</a> and <a href="#" class="text-blue-600 hover:text-blue-800">Privacy Policy</a></label>
+                </div>
+                <button type="submit" class="w-full gradient-bg text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    Start Free Trial
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Already have an account? <button id="switchToLogin" class="text-blue-600 font-medium hover:text-blue-800">Log in</button></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Success Modal -->
+    <div id="paymentModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Payment Successful!</h3>
+            <p class="text-gray-600 mb-8">Thank you for subscribing to Noord Bio Premium. You now have full access to all features.</p>
+            <button id="closePaymentModal" class="gradient-bg text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                Continue to Dashboard
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ========== DEMO FUNCTIONALITY ==========
+        
+        const heroDemoBtn = document.getElementById('heroDemoBtn');
+        const demoModal = document.getElementById('demoModal');
+        const closeDemoModal = document.getElementById('closeDemoModal');
+        
+        // Open Demo Modal
+        heroDemoBtn?.addEventListener('click', () => {
+            demoModal.classList.remove('hidden');
+        });
+        
+        // Close Demo Modal
+        closeDemoModal?.addEventListener('click', () => {
+            demoModal.classList.add('hidden');
+        });
+        
+        // ========== EXISTING FUNCTIONALITY ==========
+        
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+        const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+        const mobileSignupBtn = document.getElementById('mobileSignupBtn');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.add('open');
+            }, 10);
+        });
+        
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+        
+        // Login/Signup modals
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const closeSignupModal = document.getElementById('closeSignupModal');
+        const switchToSignup = document.getElementById('switchToSignup');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const proPlanBtn = document.getElementById('proPlanBtn');
+        const paymentModal = document.getElementById('paymentModal');
+        const closePaymentModal = document.getElementById('closePaymentModal');
+        
+        loginBtn.addEventListener('click', () => {
+            loginModal.classList.remove('hidden');
+            closeMobileMenu();
+        });
+        
+        mobileLoginBtn.addEventListener('click', () => {
+            loginModal.classList.remove('hidden');
+            closeMobileMenu();
+        });
+        
+        signupBtn.addEventListener('click', () => {
+            signupModal.classList.remove('hidden');
+            closeMobileMenu();
+        });
+        
+        mobileSignupBtn.addEventListener('click', () => {
+            signupModal.classList.remove('hidden');
+            closeMobileMenu();
+        });
+        
+        proPlanBtn.addEventListener('click', () => {
+            signupModal.classList.remove('hidden');
+        });
+        
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.classList.add('hidden');
+        });
+        
+        closeSignupModal.addEventListener('click', () => {
+            signupModal.classList.add('hidden');
+        });
+        
+        closePaymentModal.addEventListener('click', () => {
+            paymentModal.classList.add('hidden');
+        });
+        
+        switchToSignup.addEventListener('click', () => {
+            loginModal.classList.add('hidden');
+            signupModal.classList.remove('hidden');
+        });
+        
+        switchToLogin.addEventListener('click', () => {
+            signupModal.classList.add('hidden');
+            loginModal.classList.remove('hidden');
+        });
+        
+        // Close modals on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.add('hidden');
+            }
+            if (e.target === signupModal) {
+                signupModal.classList.add('hidden');
+            }
+            if (e.target === paymentModal) {
+                paymentModal.classList.add('hidden');
+            }
+            if (e.target === demoModal) {
+                demoModal.classList.add('hidden');
+            }
+        });
+        
+        // Form submissions
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In production, this would connect to a backend
+            alert('Login functionality would connect to backend in production');
+            loginModal.classList.add('hidden');
+        });
+        
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In production, this would connect to PayPal API and backend
+            signupModal.classList.add('hidden');
+            paymentModal.classList.remove('hidden');
+        });
+        
+        // FAQ accordion
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.parentElement.nextElementSibling;
+                const icon = button.querySelector('svg');
+                
+                if (answer.classList.contains('hidden')) {
+                    answer.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    answer.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+        
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+                scrollToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                scrollToTopBtn.classList.remove('opacity-100', 'visible');
+                scrollToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('open')) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+        });
+        
+        // Add animation to cards on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe cards for animation
+        document.querySelectorAll('.card-hover').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Add CSS for fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.6s ease-out forwards;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                demoModal.classList.add('hidden');
+                loginModal.classList.add('hidden');
+                signupModal.classList.add('hidden');
+                paymentModal.classList.add('hidden');
+            }
+        });
+    </script>
+    
+    <!-- Schema.org JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Noord Bio",
+        "description": "Premium platform for applied nano-health and biotech intelligence, showcasing cutting-edge technologies and startups with real-time API data.",
+        "url": "https://noordbio.app",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "0",
+            "highPrice": "99",
+            "priceCurrency": "USD",
+            "offerCount": "3"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Noord Bio",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://noordbio.app/logo.svg"
+            }
+        }
+    }
+    </script>
+</body>
+</html>
